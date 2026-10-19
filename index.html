@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>A4 Memory Designer – printable photo poster maker</title>
-<meta name="description" content="Choose a template, add your photos, edit text (Bengali supported) and download a printable A4 memory poster.">
-<meta property="og:title" content="A4 Memory Designer"><meta property="og:description" content="Create printable A4 photo collage posters in minutes."><meta name="twitter:card" content="summary">
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&family=Noto+Serif+Bengali:wght@400;700&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;600&family=Dancing+Script:wght@600&family=Pacifico&family=Caveat:wght@600&family=Cinzel:wght@600&family=Great+Vibes&family=Lobster&display=swap" rel="stylesheet">
+<title>Phoro Maker – Free A4 Photo Poster &amp; Memory Collage Maker</title>
+<meta name="description" content="Phoro Maker (phoromaker.cyou): choose a template, add your photos, edit text in Bangla or English and download a printable A4 memory poster for free.">
+<link rel="canonical" href="https://phoromaker.cyou/">
+<link rel="icon" type="image/svg+xml" href="icons/logo.svg"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Phoro Maker"><meta property="og:url" content="https://phoromaker.cyou/">
+<meta property="og:title" content="Phoro Maker – Free A4 Photo Poster Maker"><meta property="og:description" content="Birthday, wedding, anniversary and family photo collages. Pick a template, add photos, download and print – free.">
+<meta property="og:image" content="https://phoromaker.cyou/icons/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Phoro Maker logo">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Phoro Maker – Free A4 Photo Poster Maker"><meta name="twitter:description" content="Pick a template, add photos, download and print – free."><meta name="twitter:image" content="https://phoromaker.cyou/icons/og-image.png">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&family=Noto+Serif+Bengali:wght@400;700&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;600&family=Dancing+Script:wght@600&family=Pacifico&family=Caveat:wght@600&family=Cinzel:wght@600&family=Great+Vibes&family=Lobster&family=Tiro+Bangla&family=Baloo+Da+2:wght@500;700&family=Anek+Bangla:wght@500;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json"><meta name="theme-color" content="#6c63ff">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -54,36 +60,101 @@ label{display:grid;gap:2px;font-size:12px;color:var(--mu)}label.ck{display:flex;
 dialog{border:1px solid var(--bd);border-radius:16px;background:var(--cd);color:var(--tx);width:min(420px,94vw);padding:16px}dialog::backdrop{background:#0008}
 dialog[open]{display:grid;gap:8px}
 .toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#222;color:#fff;padding:8px 16px;border-radius:20px;z-index:99;font-size:14px}
+.brand{display:flex;align-items:center;gap:8px}.brand svg{width:32px;height:32px;flex:none}
+.ad{display:block;min-height:60px;margin:12px 16px;text-align:center;border:1px dashed var(--bd);border-radius:10px;padding:4px;overflow:hidden}.ad small{display:block;color:var(--mu);font-size:10px}.grid>.ad{grid-column:1/-1;margin:0}
+.ann{background:var(--ac);color:#fff;text-align:center;padding:6px 12px;font-size:13px}.rowx{display:flex;gap:12px;overflow-x:auto;padding:4px 0 8px}.rowx .card{min-width:150px;width:150px}#tpv svg{width:100%;max-height:58vh;border-radius:8px}
+#adminv .sec{display:grid;gap:8px}#adminv h3{margin:12px 0 0}
 #pimg{display:none}
 @media print{@page{size:A4;margin:0}body>*{display:none!important}body>#pimg{display:block!important;width:210mm;height:297mm}}
 </style></head><body>
+<!-- ADS: other ad places are created by the script: between templates (every 12), editor "More" tab, and the pop-up before download. -->
 <div id="app">
-<header class="top" id="hd"><b>A4 Memory Designer</b><button data-a="nav" data-v="home">Templates</button><button data-a="nav" data-v="designs">My Designs</button><button data-a="theme" aria-label="Toggle dark mode">◐</button></header>
-<main id="home">
-<section class="hero"><h1>Turn Your Memories Into Beautiful A4 Designs</h1><p>Choose a template, add your photos, personalize the text, and create a beautiful printable memory poster in minutes.</p><div class="row"><button class="pri" data-a="blank">Create Design</button><button data-a="explore">Explore Templates</button></div></section>
-<div class="filters" id="explore"><input id="q" placeholder="Search: birthday, 9 photos, minimal…" aria-label="Search templates"><select id="fc" aria-label="Category"></select><select id="fn" aria-label="Photo count"></select><select id="fa" aria-label="Free or premium"><option value="">Free + PRO</option><option value="free">Free</option><option value="pro">PRO</option></select><select id="fs" aria-label="Style"></select><select id="so" aria-label="Sort"><option value="pop">Recent / Popular</option><option value="new">Newest</option><option value="az">A–Z</option></select><label class="ck"><input type="checkbox" id="ff"> Favorites only</label></div>
+<header class="top" id="hd"><b class="brand"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="lgh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6c63ff"/><stop offset="1" stop-color="#3fa7ff"/></linearGradient></defs><rect width="100" height="100" rx="22" fill="url(#lgh)"/><g transform="rotate(-6 50 50)"><rect x="28" y="14" width="44" height="72" rx="5" fill="#fff"/><rect x="34" y="22" width="32" height="30" rx="3" fill="#dfe6ff"/><path d="M34 52L45 36L52 44L57 39L66 52Z" fill="#6c63ff"/><circle cx="58" cy="28" r="4" fill="#ffb703"/><rect x="34" y="58" width="32" height="4" rx="2" fill="#c9d0ee"/><rect x="34" y="66" width="22" height="3" rx="1.5" fill="#c9d0ee"/><path d="M60 82C52 76 51 72 53 70C55 68 58 69 60 72C62 69 65 68 67 70C69 72 68 76 60 82Z" fill="#ff5d8f"/></g></svg><span>Phoro Maker</span></b><button data-a="nav" data-v="home" data-i="nav1">Templates</button><button data-a="nav" data-v="designs" data-i="nav2">My Designs</button><button data-a="lang" aria-label="Language">EN/বাং</button><button data-a="theme" aria-label="Toggle dark mode">◐</button></header>
+<main id="home"><div id="ann" class="ann" hidden></div>
+<section class="hero"><h1 data-i="h1">Turn Your Memories Into Beautiful A4 Designs</h1><p data-i="sub">Choose a template, add your photos, personalize the text, and create a beautiful printable memory poster in minutes.</p><div class="row"><button class="pri" data-a="blank" data-i="create">Create Design</button><button data-a="explore" data-i="explore">Explore Templates</button></div></section>
+
+<!-- ===== AD SLOT: HOME TOP BANNER =====
+     The ad code is injected into this box automatically.
+     Put your IDs in the "ADS SETTINGS — EDIT HERE" block in the JavaScript at the bottom of this file. -->
+<div class="ad" data-place="top" data-s hidden><small>Advertisement</small></div><div id="rows"></div><div class="filters" id="explore"><input id="q" data-ip="search" placeholder="Search: birthday, 9 photos, minimal…" aria-label="Search templates"><select id="fc" aria-label="Category"></select><select id="fn" aria-label="Photo count"></select><select id="fs" aria-label="Style"></select><select id="so" aria-label="Sort"><option value="pop">Recent / Popular</option><option value="new">Newest</option><option value="az">A–Z</option></select><label class="ck"><input type="checkbox" id="ff"> Favorites only</label></div>
 <p class="hint" style="max-width:1200px;margin:0 auto;padding:0 16px" id="cnt"></p>
 <div class="grid" id="grid"></div>
 <section class="sec"><h2>How it works</h2><div class="steps"><div><b>1. Choose a template</b><br><span class="hint">Search by occasion, style or photo count.</span></div><div><b>2. Add your photos</b><br><span class="hint">Select many at once; they fill the slots in order.</span></div><div><b>3. Customize</b><br><span class="hint">Text (Bengali too), colors, stickers, filters.</span></div><div><b>4. Download &amp; print</b><br><span class="hint">PNG, JPG or a true A4 PDF.</span></div></div></section>
-<section class="sec"><h2>Free vs PRO</h2><p class="hint">PRO badges and the watermark are driven by a config object in the code (<code>CFG</code>), ready to be connected to an admin panel and payments later. Right now every template is usable and free exports carry a small watermark.</p><h2>FAQ</h2><details><summary>Do my photos get uploaded?</summary><p class="hint">No. Everything happens in your browser; designs are saved on this device (IndexedDB).</p></details><details><summary>Can I write in Bangla?</summary><p class="hint">Yes. Bengali fonts (Hind Siliguri, Noto Serif Bengali) are built in. Keep letter spacing at 0 for Bengali so letters stay joined.</p></details></section>
+<section class="sec"><h2>100% free</h2><p class="hint">Every template, tool and download is free. The site is supported by ads.</p><h2>FAQ</h2><details><summary>Do my photos get uploaded?</summary><p class="hint">No. Everything happens in your browser; designs are saved on this device (IndexedDB).</p></details><details><summary>Can I write in Bangla?</summary><p class="hint">Yes. Bengali fonts (Hind Siliguri, Noto Serif Bengali) are built in. Keep letter spacing at 0 for Bengali so letters stay joined.</p></details></section>
+<!-- ===== AD SLOT: HOME BOTTOM BANNER =====
+     The ad code is injected into this box automatically.
+     Put your IDs in the "ADS SETTINGS — EDIT HERE" block in the JavaScript at the bottom of this file. -->
+<div class="ad" data-place="footer" data-s hidden><small>Advertisement</small></div>
 </main>
-<main id="designs" hidden><div class="sec"><h2>My Designs</h2><div class="grid" id="dlist" style="padding:0"></div></div></main>
+<main id="designs" hidden><div class="sec"><h2>My Designs</h2>
+<!-- ===== AD SLOT: MY DESIGNS PAGE BANNER =====
+     The ad code is injected into this box automatically.
+     Put your IDs in the "ADS SETTINGS — EDIT HERE" block in the JavaScript at the bottom of this file. -->
+<div class="ad" data-place="designs" data-s hidden><small>Advertisement</small></div><div class="grid" id="dlist" style="padding:0"></div></div></main>
+<main id="adminv" hidden></main>
 <section id="editor" hidden>
-<div class="bar"><button data-a="back" aria-label="Back to My Designs">←</button><input id="dname" aria-label="Design name" value="Untitled Design"><span id="saved"></span><button data-a="undo" aria-label="Undo">↶</button><button data-a="redo" aria-label="Redo">↷</button><button class="pri" data-a="exp">Download</button></div>
+<div class="bar"><button data-a="back" aria-label="Back to My Designs">←</button><input id="dname" aria-label="Design name" value="Untitled Design"><span id="saved"></span><button data-a="undo" aria-label="Undo">↶</button><button data-a="redo" aria-label="Redo">↷</button><button class="pri" data-a="exp" data-i="dl">Download</button></div>
 <div class="work"><div id="stage"><canvas id="c"></canvas></div><div id="tray"><div id="pan"></div><nav id="tabs"></nav></div></div>
 </section>
 </div>
 <input type="file" id="file" accept="image/jpeg,image/png,image/webp" multiple hidden>
 <dialog id="dlg"><h3 style="margin:0">Download</h3><img id="pv" alt="Preview" style="width:100%;max-height:38vh;object-fit:contain;background:#8883;border-radius:8px">
 <label>Format<select id="fmt"><option value="png">PNG</option><option value="jpg">JPG</option><option value="pdf">PDF (A4)</option></select></label>
+<label>Size<select id="sz"><option value="a4">A4 poster</option><option value="fb">Facebook post (1200×630)</option><option value="ig">Instagram post (1080×1080)</option><option value="story">Instagram story (1080×1920)</option><option value="wa">WhatsApp status (1080×1920)</option></select></label>
 <label>Quality<select id="qs"><option value="1240">Standard (1240×1754)</option><option value="1860">High (1860×2631)</option><option value="2480" selected>Print (2480×3508, 300 dpi)</option></select></label>
 <label>JPG / PDF quality<input id="jq" type="range" min=".5" max="1" step=".05" value=".92"></label>
 <label class="ck"><input type="checkbox" id="tr"> Transparent background (PNG only)</label>
+<label class="ck"><input type="checkbox" id="bl"> PDF with 3 mm bleed and crop marks</label>
 <div class="row"><button class="pri" data-a="dl">Download</button><button data-a="print">Print A4</button><button data-a="share">Share</button><button data-a="close">Back to edit</button></div></dialog>
+<dialog id="dlgAd"><h3 style="margin:0">Your download is almost ready</h3><div id="adbox"></div><div class="row"><button class="pri" id="adgo" disabled>…</button><button id="adx">Cancel</button></div></dialog>
+<dialog id="dlgT"><div id="tpv"></div><div class="row"><button class="pri" id="tgo" data-a="st">Start Designing</button><button data-a="closeT">Close</button></div></dialog>
+<dialog id="dlgV"><h3 style="margin:0">Layout suggestions</h3><div id="vbox" class="row" style="flex-wrap:nowrap;overflow:auto"></div><button data-a="closeV">Close</button></dialog>
 <img id="pimg" alt="">
 <script>
-/* ===== CONFIG (admin-ready: later load from Firestore) ===== */
-const CFG={watermark:true,wmText:'A4 Memory Designer',premiumEnforced:false,firebase:null /* paste Firebase web config here to enable cloud features */};
+/* ===== ADS SETTINGS — EDIT HERE ===== */
+/* ┌──────────────────────────────────────────────────────────────────────┐
+   │  ADS: put your IDs below. Nothing else needs to be changed.          │
+   │  1) enabled  : true = show ads, false = no ads anywhere.             │
+   │  2) network  : 'adsense'  -> Google AdSense                          │
+   │                'propeller' -> PropellerAds                           │
+   │                'off'       -> no network                             │
+   │     (change this one word any time to switch network)                 │
+   │  3) Paste the IDs of the network you use in its block.               │
+   │  4) placements: 1 = show in that place, 0 = hide it.                 │
+   └──────────────────────────────────────────────────────────────────────┘ */
+const ADS_SETTINGS={
+  enabled:false,            // <-- set true when your IDs are ready
+  network:'adsense',        // <-- 'adsense' | 'propeller' | 'off'
+  countdown:5,              // seconds the "download" ad is shown before the file downloads
+  placements:{              // 1 = show, 0 = hide
+    top:1,                  // home page, under the hero
+    grid:1,                 // inside the template list (every 12 templates)
+    footer:1,               // bottom of the home page
+    designs:1,              // "My Designs" page
+    editor:1,               // editor -> More tab
+    download:1              // pop-up before every download
+  },
+  /* ----- GOOGLE ADSENSE ----- */
+  adsense:{
+    client:'',              // <-- Publisher ID, e.g. 'ca-pub-1234567890123456'
+    slot:'',                // <-- Ad unit ID (banner), e.g. '1234567890'
+    slotDownload:'',        // <-- Ad unit ID for the download pop-up (optional, empty = use slot)
+    custom:''               // optional: paste a full AdSense ad code here instead of the 3 fields above
+  },
+  /* ----- PROPELLERADS ----- */
+  propeller:{
+    src:'',                 // <-- script URL from your PropellerAds tag, e.g. 'https://xxxx/tag.min.js'
+    zone:'',                // <-- Zone ID for banners
+    zoneDownload:'',        // <-- Zone ID for the download pop-up (optional, empty = use zone)
+    custom:'',              // optional: paste a full banner tag here instead of src + zone
+    global:''               // optional: site-wide tag (push / on-click / interstitial) pasted as HTML
+  }
+};
+/* ===== CONFIG ===== */
+const CFGD={site:{name:'Phoro Maker',announcement:'',watermark:false},ads:ADS_SETTINGS};
+let CFG=JSON.parse(JSON.stringify(CFGD));
+const merge=(a,b)=>{for(const k in b){if(b[k]&&typeof b[k]=='object'&&!Array.isArray(b[k]))a[k]=merge(a[k]&&typeof a[k]=='object'?a[k]:{},b[k]);else a[k]=b[k]}return a};
+async function loadCfg(){try{const r=await fetch('ads-config.json',{cache:'no-store'});if(r.ok)merge(CFG,await r.json())}catch(e){}const l=G('a4cfg',null);if(l)merge(CFG,l)}
 const W=794,H=1123,$=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const toast=m=>{const t=document.createElement('div');t.className='toast';t.textContent=m;document.body.append(t);setTimeout(()=>t.remove(),2200)};
 const G=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},S=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
@@ -91,9 +162,44 @@ const G=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(e){retur
 const db=new Promise((ok,no)=>{const r=indexedDB.open('a4md',1);r.onupgradeneeded=()=>r.result.createObjectStore('p',{keyPath:'id'});r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)});
 const tx=async(m,f)=>{const d=await db;return new Promise((ok,no)=>{const q=f(d.transaction('p',m).objectStore('p'));q.onsuccess=()=>ok(q.result);q.onerror=()=>no(q.error)})};
 const dbAll=()=>tx('readonly',s=>s.getAll()),dbPut=p=>tx('readwrite',s=>s.put(p)),dbDel=id=>tx('readwrite',s=>s.delete(id));
+/* ===== I18N ===== */
+const TT={en:{nav1:'Templates',nav2:'My Designs',h1:'Turn Your Memories Into Beautiful A4 Designs',sub:'Choose a template, add your photos, personalize the text, and create a beautiful printable memory poster in minutes.',create:'Create Design',explore:'Explore Templates',search:'Search: birthday, 9 photos, minimal…',photos:'Photos',text:'Text',els:'Elements',bg:'Background',edit:'Edit',more:'More',dl:'Download',start:'Start Designing',trend:'Trending',new:'New',pop:'Popular',all:'View all',moret:'Show more templates'},
+bn:{nav1:'টেমপ্লেট',nav2:'আমার ডিজাইন',h1:'আপনার স্মৃতিকে বানান সুন্দর A4 ডিজাইন',sub:'একটি টেমপ্লেট বেছে নিন, ছবি যোগ করুন, লেখা বদলান এবং মিনিটেই প্রিন্টযোগ্য মেমোরি পোস্টার বানান।',create:'ডিজাইন শুরু করুন',explore:'টেমপ্লেট দেখুন',search:'খুঁজুন: জন্মদিন, বিয়ে, ৯ ছবি…',photos:'ছবি',text:'লেখা',els:'এলিমেন্ট',bg:'ব্যাকগ্রাউন্ড',edit:'এডিট',more:'আরও',dl:'ডাউনলোড',start:'ডিজাইন শুরু',trend:'ট্রেন্ডিং',new:'নতুন',pop:'জনপ্রিয়',all:'সব দেখুন',moret:'আরও টেমপ্লেট দেখুন'}};
+let LANG=G('a4lang','en');const tr=k=>(TT[LANG]||TT.en)[k]||TT.en[k]||k;
+function applyLang(){document.documentElement.lang=LANG=='bn'?'bn':'en';document.querySelectorAll('[data-i]').forEach(e=>e.textContent=tr(e.dataset.i));document.querySelectorAll('[data-ip]').forEach(e=>e.placeholder=tr(e.dataset.ip));const t=$('#tgo');if(t)t.textContent=tr('start')}
+/* ===== ADS ===== */
+const adOn=p=>CFG.ads.enabled&&CFG.ads.network!=='off'&&!!CFG.ads.placements[p];
+const adBox=p=>adOn(p)?`<div class="ad" data-place="${p}"><small>Advertisement</small></div>`:'';
+let asLoaded=0;
+const loadAS=c=>{if(asLoaded||!c)return;asLoaded=1;const x=document.createElement('script');x.async=1;x.crossOrigin='anonymous';x.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='+encodeURIComponent(c);document.head.append(x)};
+function runTag(el,html){const t=document.createElement('template');t.innerHTML=html;t.content.childNodes.forEach(n=>{if(n.tagName=='SCRIPT'){const x=document.createElement('script');[...n.attributes].forEach(a=>x.setAttribute(a.name,a.value));x.text=n.text;el.append(x)}else el.append(n.cloneNode(true))})}
+function mountAds(root=document){root.querySelectorAll('.ad:not([data-m])').forEach(el=>{const p=el.dataset.place;if(!adOn(p))return;el.dataset.m=1;const A=CFG.ads,dl=p=='download';
+try{if(A.network=='adsense'){const a=A.adsense;if(a.custom)return runTag(el,a.custom);if(!a.client)return;loadAS(a.client);const sl=(dl&&a.slotDownload)||a.slot;if(!sl)return;const i=document.createElement('ins');i.className='adsbygoogle';i.style.display='block';i.dataset.adClient=a.client;i.dataset.adSlot=sl;i.dataset.adFormat='auto';i.dataset.fullWidthResponsive='true';el.append(i);(window.adsbygoogle=window.adsbygoogle||[]).push({})}
+else if(A.network=='propeller'){const q=A.propeller;if(q.custom)return runTag(el,q.custom);const z=(dl&&q.zoneDownload)||q.zone;if(!z||!q.src)return;const x=document.createElement('script');x.dataset.zone=z;x.src=q.src;x.async=1;el.append(x)}}catch(e){console.warn('ad',e)}})}
+function applyCfg(){const a=$('#ann'),m=CFG.site.announcement;a.hidden=!m;a.textContent=m||'';document.querySelectorAll('.ad[data-s]').forEach(e=>{e.hidden=!adOn(e.dataset.place)});const A=CFG.ads;
+if(A.enabled){if(A.network=='adsense')loadAS(A.adsense.client);if(A.network=='propeller'&&A.propeller.global&&!window._pg){window._pg=1;runTag(document.body,A.propeller.global)}}mountAds()}
+const adReady=()=>{const A=CFG.ads;if(!adOn('download'))return false;return A.network=='adsense'?!!(A.adsense.client||A.adsense.custom):!!(A.propeller.custom||(A.propeller.src&&A.propeller.zone))};
+function gate(fn){if(!adReady())return fn();const d=$('#dlgAd'),b=$('#adgo');$('#adbox').innerHTML=adBox('download');mountAds($('#adbox'));let n=+CFG.ads.countdown||5;b.disabled=true;b.textContent=`Ready in ${n}s`;d.showModal();
+const iv=setInterval(()=>{n--;if(n>0)b.textContent=`Ready in ${n}s`;else{clearInterval(iv);b.disabled=false;b.textContent='Download now'}},1000);b.onclick=()=>{d.close();fn()};$('#adx').onclick=()=>{clearInterval(iv);d.close()}}
+/* ===== STATS (this device only) ===== */
+const bump=(k,id)=>{const s=G('a4st',{});s.start=s.start||{};s.view=s.view||{};if(k=='exp')s.exp=(s.exp||0)+1;else if(k=='start'){s.start[id]=(s.start[id]||0)+1;s.made=(s.made||0)+1}else s.view[id]=(s.view[id]||0)+1;S('a4st',s)};
+/* ===== ADMIN ===== */
+const V=id=>$('#'+id).value.trim(),K=id=>$('#'+id).checked;
+const readForm=()=>({site:{name:V('s_n')||'Phoro Maker',announcement:V('s_a'),watermark:K('s_w')},ads:{enabled:K('a_en'),network:$('#a_net').value,countdown:+V('a_cd')||5,placements:Object.fromEntries(['top','grid','footer','designs','editor','download'].map(p=>[p,K('p_'+p)?1:0])),adsense:{client:V('as_c'),slot:V('as_s'),slotDownload:V('as_d'),custom:$('#as_x').value.trim()},propeller:{src:V('pr_src'),zone:V('pr_z'),zoneDownload:V('pr_d'),custom:$('#pr_x').value.trim(),global:$('#pr_g').value.trim()}}});
+const fullCfg=()=>merge(JSON.parse(JSON.stringify(CFGD)),readForm());
+function adminUI(){const A=CFG.ads,Z=CFG.site,st=G('a4st',{}),top=Object.entries(st.start||{}).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([id,n])=>`${esc((TPL.find(t=>t.id==id)||{name:id}).name)}: ${n}`).join(', ')||'–';
+const f=(id,l,v,ph='')=>`<label>${l}<input id="${id}" value="${esc(v||'')}" placeholder="${ph}"></label>`,ck=(id,l,v)=>`<label class="ck"><input type="checkbox" id="${id}" ${v?'checked':''}> ${l}</label>`,ta=(id,l,v)=>`<label>${l}<textarea id="${id}" rows="3">${esc(v||'')}</textarea></label>`;
+$('#adminv').innerHTML=`<div class="sec"><h2>Admin panel</h2><p class="hint">This site has no server, so settings work like this: <b>Save</b> applies them in this browser only (to test). To make them live for everyone, press <b>Download ads-config.json</b> and upload that file next to index.html in your GitHub repo. Press <b>Reset</b> afterwards to see what visitors see.</p>
+<h3>Ads</h3>${ck('a_en','Ads ON (master switch)',A.enabled)}<label>Active network<select id="a_net"><option value="adsense" ${A.network=='adsense'?'selected':''}>Google AdSense</option><option value="propeller" ${A.network=='propeller'?'selected':''}>PropellerAds</option><option value="off" ${A.network=='off'?'selected':''}>None</option></select></label>${f('a_cd','Seconds to wait before download',A.countdown)}
+<div class="row">${[['top','Home top'],['grid','Between templates'],['footer','Home bottom'],['designs','My Designs'],['editor','Editor (More tab)'],['download','Before download']].map(([k,l])=>ck('p_'+k,l,A.placements[k])).join('')}</div>
+<h3>Google AdSense</h3>${f('as_c','Publisher ID',A.adsense.client,'ca-pub-1234567890123456')}${f('as_s','Ad unit slot ID (banner)',A.adsense.slot,'1234567890')}${f('as_d','Ad unit slot ID (download popup, optional)',A.adsense.slotDownload)}${ta('as_x','Custom ad code (optional, replaces the fields above)',A.adsense.custom)}<button data-a="adstxt">Download ads.txt</button>
+<h3>PropellerAds</h3>${f('pr_src','Tag script URL (from your Propeller tag)',A.propeller.src,'https://…/tag.min.js')}${f('pr_z','Zone ID (banner)',A.propeller.zone)}${f('pr_d','Zone ID (download popup, optional)',A.propeller.zoneDownload)}${ta('pr_x','Custom banner code (optional)',A.propeller.custom)}${ta('pr_g','Site-wide code (optional: push / on-click / interstitial tags)',A.propeller.global)}
+<h3>Site</h3>${f('s_n','Site name (used in watermark)',Z.name)}${f('s_a','Announcement bar text (empty = hidden)',Z.announcement)}${ck('s_w','Watermark on exports',Z.watermark)}
+<div class="row"><button class="pri" data-a="adsave">Save here &amp; reload</button><button data-a="addl">Download ads-config.json</button><button data-a="adcopy">Copy JSON</button><button data-a="adreset">Reset (use public config)</button><button data-a="nav" data-v="home">Back to site</button></div>
+<h3>Stats (this device only)</h3><p class="hint">Designs started: ${st.made||0} · Exports: ${st.exp||0}<br>Most used templates: ${top}</p></div>`}
 /* ===== TEMPLATE DATA (generated as structured objects: slots, texts, bg, fonts) ===== */
 const HS="'Hind Siliguri',sans-serif",PF="'Playfair Display','Noto Serif Bengali',serif",DS="'Dancing Script','Hind Siliguri',cursive",CZ="'Cinzel','Noto Serif Bengali',serif",PO="'Poppins','Hind Siliguri',sans-serif",NS="'Noto Serif Bengali',serif",GV="'Great Vibes','Hind Siliguri',cursive",PA="'Pacifico','Hind Siliguri',cursive",CA="'Caveat','Hind Siliguri',cursive",LO="'Lobster','Hind Siliguri',cursive";
-const FONTS=[['Hind Siliguri (Bengali)',HS],['Noto Serif Bengali',NS],['Playfair Display',PF],['Poppins',PO],['Dancing Script',DS],['Great Vibes',GV],['Pacifico',PA],['Caveat',CA],['Cinzel',CZ],['Lobster',LO]];
+const FONTS=[['Hind Siliguri (Bengali)',HS],['Noto Serif Bengali',NS],['Playfair Display',PF],['Poppins',PO],['Dancing Script',DS],['Great Vibes',GV],['Pacifico',PA],['Caveat',CA],['Cinzel',CZ],['Lobster',LO],['Tiro Bangla (Bengali)',"'Tiro Bangla',serif"],['Baloo Da 2 (Bengali)',"'Baloo Da 2',sans-serif"],['Anek Bangla (Bengali)',"'Anek Bangla',sans-serif"]];
 const STY=[{n:'Minimal',bg:'#ffffff',fg:'#222222',ac:'#c9c9c9',f:PO},{n:'Elegant',bg:'#fbf7f0',fg:'#4a3b2a',ac:'#c2a878',f:PF},{n:'Modern',bg:'#12141c',fg:'#ffffff',ac:'#6c63ff',f:PO},{n:'Cute',bg:'#ffeef4',fg:'#b03a6a',ac:'#ff9ec0',f:PA},{n:'Luxury',bg:'#14110d',fg:'#e8cf8e',ac:'#b8963e',f:CZ},{n:'Vintage',bg:'#efe3cf',fg:'#5a4430',ac:'#a98b63',f:NS},{n:'Floral',bg:'#fff5f5',fg:'#7a3b4f',ac:'#e8a0b0',f:GV},{n:'Classic',bg:'#f4f1ea',fg:'#1f2a44',ac:'#1f2a44',f:PF},{n:'Soft Blue',bg:'#eaf3ff',fg:'#23406b',ac:'#8db8f0',f:HS},{n:'Black & White',bg:'#ffffff',fg:'#000000',ac:'#000000',f:CZ},{n:'Rose Dark',bg:'#17090d',fg:'#ffffff',ac:'#c1121f',f:GV},{n:'Sage Cream',bg:'#f3f1e7',fg:'#3d4a3a',ac:'#9bb08f',f:DS},{n:'Blush',bg:'#fdeceb',fg:'#8c2f3a',ac:'#e3a6a8',f:PF}];
 const CATS=[['Birthday','Happy Birthday','শুভ জন্মদিন','🎂'],['Wedding','Our Wedding','শুভ বিবাহ','💍'],['Couple','Our Story','আমাদের গল্প','💕'],['Anniversary','Happy Anniversary','শুভ বিবাহবার্ষিকী','❤️'],['Friendship','Best Friends','বন্ধুত্ব চিরকাল','🤝'],['Family','Family Memories','পরিবারই সব','🏡'],['Baby','Baby Moments','ছোট্ট সোনামণি','🧸'],['Travel','Travel Memories','ভ্রমণ স্মৃতি','✈️'],['Graduation','Graduation Day','অভিনন্দন','🎓'],['Memories','Beautiful Memories','আমাদের সুন্দর স্মৃতি','⭐']];
 const AX=50,AY=215,AW=694,AH=770;
@@ -134,7 +240,8 @@ const LAY=[{n:'Single Hero',k:1,f:()=>[[AX,AY,AW,AH]]},{n:'Duo Stack',k:2,f:()=>
 {n:'Chalk Dark',k:7,cats:BD,sty:SY('Modern','#2a2a2d','#ffffff','#f3a6c0',GV),cal:[160,290,13],f:()=>[[550,190,210,210],[395,300,140,120],[395,435,140,120],[395,570,140,120],[395,705,140,120],[550,415,210,230],[550,660,210,190]],tx:(c,s)=>[['✨',50,'sans-serif',620,90,120],['On your special day, I pray that all your dreams come true.',18,DS,150,560,230,'left'],['🌸',70,'sans-serif',150,800,100],['🦋',44,'sans-serif',730,980,80],[c[1],62,s.f,397,1020,720],['Name',44,s.f,560,1085,300]]},
 {n:'Teal Title',k:7,cats:BD,sty:SY('Floral','#fbf6f4','#1f7a8c','#e5a9b8',PF),f:()=>[[40,300,360,720],[415,300,339,200],[415,515,160,170],[590,515,164,170],[415,700,339,150],[415,865,160,155],[590,865,164,155]],tx:(c,s)=>[['HAPPY',104,PF,397,100,720],['BIRTHDAY',104,PF,397,205,720],['🌺',90,'sans-serif',80,1050,120],['🦋',44,'sans-serif',730,260,80],['Name',44,DS,600,1070,300]]},
 {n:'Sand Heart',k:9,cats:BD,sty:SY('Vintage','#d9cdb4','#6b2b3d','#a58f6d',GV),f:()=>[[270,170,110,100],[395,170,110,100],[520,170,224,240],[270,285,235,230],[520,425,224,140],[405,530,110,110],[520,580,110,110],[635,580,110,110],[40,520,330,570]],tx:(c,s)=>[[c[1],70,s.f,397,85,720],[D,28,PO,560,730,330,'left'],['Name',64,s.f,580,865,350],['May your day be filled with love, laughter and beautiful moments.',18,HS,580,950,330]]},
-{n:'Masonry Title',k:8,cats:BD,sty:SY('Minimal','#ececed','#1a1a1a','#999999',GV),f:()=>[[40,260,235,260],[40,530,235,250],[40,790,235,290],[285,260,235,330],[285,600,235,200],[285,810,235,270],[530,260,224,290],[530,560,224,520]],tx:(c,s)=>[['Happy',92,GV,200,95,360,'left'],['Birthday Name',40,PO,230,180,420,'left'],['May you be blessed with endless happiness.',14,PO,330,225,520,'left']]}];
+{n:'Masonry Title',k:8,cats:BD,sty:SY('Minimal','#ececed','#1a1a1a','#999999',GV),f:()=>[[40,260,235,260],[40,530,235,250],[40,790,235,290],[285,260,235,330],[285,600,235,200],[285,810,235,270],[530,260,224,290],[530,560,224,520]],tx:(c,s)=>[['Happy',92,GV,200,95,360,'left'],['Birthday Name',40,PO,230,180,420,'left'],['May you be blessed with endless happiness.',14,PO,330,225,520,'left']]},
+{n:'Trio Flowers',k:4,cats:BD,sty:SY('Elegant','#e9e4dc','#2e4a48','#c8a99a',DS),f:()=>[[30,180,208,350],[228,129,274,436],[517,157,212,358],[245,545,345,470]],tx:(c,s)=>[[c[1],66,s.f,397,85,720],['Name',34,CA,135,600,200,'left']]}];
 const D=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
 const DEFY=Y=>(c,s)=>[[c[3],48,'sans-serif',397,Y[0],700],[c[1],58,s.f,397,Y[1],700],[c[2],28,s.f,397,Y[2],700],['Add your names & date',22,s.f,397,Y[3],700]],DEF=DEFY([48,105,170,1050]);
 const rgba=(h,a)=>`rgba(${parseInt(h.slice(1,3),16)},${parseInt(h.slice(3,5),16)},${parseInt(h.slice(5,7),16)},${a})`;
@@ -143,8 +250,33 @@ function calObj(d,cx,cy,w,fg,ac){const cw=w/7,fs=Math.max(9,w/14),first=new Date
 it.push(T(d.toLocaleDateString('en-US',{month:'long',year:'numeric'}),w/2,0,{fontSize:fs*1.3,fontWeight:'bold'}));'SMTWTFS'.split('').forEach((c,i)=>it.push(T(c,cw*(i+.5),fs*2,{fill:ac,fontWeight:'bold'})));
 for(let k=1;k<=dim;k++){const p=first+k-1,x=cw*(p%7+.5),y=fs*(3.4+Math.floor(p/7)*1.5),hl=k===d.getDate();if(hl)it.push(new fabric.Circle({radius:fs*.8,fill:ac,left:x,top:y,originX:'center',originY:'center'}));it.push(T(k,x,y,hl?{fill:'#ffffff',fontWeight:'bold'}:{}))}
 return new fabric.Group(it,{left:cx,top:cy,originX:'center',originY:'center',data:{cal:1}})}
+function mkDec(k,col,z){const P=(d,o={})=>new fabric.Path(d,{fill:col,...o}),L=(d,w=3)=>new fabric.Path(d,{fill:'',stroke:col,strokeWidth:w,strokeLineCap:'round'});
+const LEAF='M0 50C20 0 60 0 100 50C60 100 20 100 0 50Z',HEART='M50 90C10 60 0 30 0 20C0 -5 40 -10 50 25C60 -10 100 -5 100 20C100 30 90 60 50 90Z';let o;
+if(k=='butterfly')o=P('M50 50C30 5 -5 12 6 40C10 55 35 58 50 50C35 62 12 76 24 90C36 100 50 70 50 56C50 70 64 100 76 90C88 76 65 62 50 50C65 58 90 55 94 40C105 12 70 5 50 50Z');
+else if(k=='heartline')o=L(HEART,5);else if(k=='leaf')o=P(LEAF);
+else if(k=='bow')o=L('M50 50C20 5 -5 30 8 50C-5 72 20 95 50 50C80 95 105 72 92 50C105 30 80 5 50 50Z',4);
+else if(k=='flourish')o=L('M0 20C20 -5 40 45 60 20S100 -5 120 20',3);else if(k=='line')o=L('M0 0L100 0',3);
+else if(k=='sparkle')o=star(4,50,12).set({fill:col});
+else if(k=='flower'){const it=[0,72,144,216,288].map(a=>new fabric.Ellipse({rx:17,ry:31,left:50,top:50,originX:'center',originY:'bottom',angle:a,fill:col,stroke:'#00000022',strokeWidth:1}));it.push(new fabric.Circle({radius:7,left:50,top:50,originX:'center',originY:'center',fill:'#ffd166'}));o=new fabric.Group(it)}
+else if(k=='sprig'){const it=[L('M0 100C30 70 60 40 100 0',3)];[[15,85,-30],[35,68,40],[50,52,-30],[68,35,40],[85,15,-30]].forEach(([x,y,a])=>it.push(P(LEAF,{left:x,top:y,originX:'center',originY:'center',angle:a,scaleX:.26,scaleY:.26})));o=new fabric.Group(it)}
+else if(k=='lights'){const it=[L('M0 0Q200 90 400 0',2)];for(let i=1;i<10;i++){const t=i/10;it.push(new fabric.Circle({radius:6,left:400*t,top:180*t*(1-t),originX:'center',originY:'center',fill:'#ffe29a'}))}o=new fabric.Group(it)}
+else o=P(HEART);
+const m=z/Math.max(o.width,o.height);o.set({scaleX:m,scaleY:m,originX:'center',originY:'center',data:{}});return o}
+const DC={
+'Center Calendar':(c,s)=>[['flourish',397,452,130,0,s.ac]],
+'Cream Floral Calendar':(c,s)=>[['sprig',90,100,130,0,'#7a9a72'],['flower',62,68,46,0,'#f4ece4'],['bow',715,85,90,0,s.fg],['bow',80,1045,90,10,s.fg],['sprig',715,1035,130,180,'#7a9a72'],['flower',742,1062,46,0,'#f4ece4']],
+'Dark Red Dense':(c,s)=>[['butterfly',590,470,56,15,'#f6b3d4'],['butterfly',640,525,28,-20,'#f6b3d4'],['heartline',722,468,56,0,'#e63946'],['heartline',745,495,40,0,'#e63946'],['sparkle',552,528,20,0,'#f6b3d4']],
+'Polaroid Script':(c,s)=>[['heartline',682,1012,70,0,s.fg]],
+'Red Script Trio':(c,s)=>[['line',120,100,130,0,s.ac],['line',397,1062,160,0,s.ac],['heart',690,1010,20,0,'#e63946']],
+'Puzzle Collage':(c,s)=>[['sprig',705,985,150,0,'#6b9b5a'],['flower',690,935,60,0,'#f2c94c'],['flower',728,968,44,0,'#f2c94c']],
+'Heart Tape':(c,s)=>[['heartline',640,300,44,15,'#e8707e'],['heartline',150,640,36,-15,'#f4a0b0'],['heartline',620,860,44,10,'#e8707e'],['flourish',397,1088,240,0,s.fg]],
+'Chalk Dark':(c,s)=>[['lights',560,70,420,0,'#ffe29a'],['flower',150,820,110,0,'#f4ece4'],['sprig',230,900,110,0,'#cfd8cf'],['butterfly',730,985,48,-15,'#f6a5c8'],['butterfly',765,935,30,20,'#f6a5c8'],['butterfly',110,1000,34,-10,'#f6a5c8'],['flourish',397,1100,260,0,'#e6c46a']],
+'Teal Title':(c,s)=>[['flower',70,1045,150,0,'#e8a0b8'],['flower',140,1010,80,0,'#f6d6df'],['sprig',700,330,110,0,'#7aa59a'],['butterfly',735,255,46,15,'#e57fa8']],
+'Sand Heart':(c,s)=>[['butterfly',700,745,38,15,'#7a8fc4'],['heartline',60,500,40,-10,s.fg],['flourish',580,905,200,0,s.fg]],
+'Trio Flowers':(c,s)=>[['butterfly',728,98,42,-10,'#8f9da0'],['flower',430,1010,140,0,'#c9344a'],['flower',350,1045,105,20,'#e05a6e'],['flower',515,1045,105,-15,'#e8869a'],['flower',285,995,80,0,'#f5e6d8'],['butterfly',585,720,44,15,'#f2a7c3'],['butterfly',655,640,34,-10,'#f2a7c3'],['butterfly',700,990,34,0,'#f2a7c3'],['butterfly',255,745,30,20,'#f2a7c3']]};
+LAY.forEach(l=>{if(DC[l.n])l.dc=DC[l.n]});
 const TPL=[];CATS.forEach((c,ci)=>LAY.forEach((l,li)=>{if(l.cats&&!l.cats.includes(c[0]))return;const s=l.sty||STY[l.st!=null?l.st:(ci*3+li)%10],n=TPL.length;TPL.push({id:'t'+(n+1),name:c[0]+' '+l.n,category:c[0],style:s.n,photos:l.k,orientation:'portrait',premium:n%4==3,isNew:li>=10,order:li>=10?n-1000:n,slots:l.f(),fade:l.fade,cal:l.cal,frame:li<10&&li%2==1||!!l.frm,bg:s.bg,fg:s.fg,ac:s.ac,font:s.f,
-texts:(l.tx||(l.Y?DEFY(l.Y):DEF))(c,s)}) }));
+texts:(l.tx||(l.Y?DEFY(l.Y):DEF))(c,s).filter(x=>!(l.dc&&x[2]=='sans-serif')),decor:l.dc?l.dc(c,s):[]}) }));
 /* ===== generated sample "photos" (no external images are allowed, so scenes are drawn locally) ===== */
 const PAL=[['#ffb88c','#de6262'],['#a18cd1','#fbc2eb'],['#89f7fe','#66a6ff'],['#d4fc79','#96e6a1'],['#fbc2eb','#a6c1ee'],['#f6d365','#fda085'],['#ff9a9e','#fecfef'],['#7f7fd5','#86a8e7'],['#fddb92','#d1fdff'],['#c3cfe2','#f5576c']];
 const rnd=(sd,i)=>{const x=Math.sin(sd*127.1+i*311.7)*43758.5453;return x-Math.floor(x)};
@@ -155,20 +287,22 @@ else for(let k=0;k<7;k++)o+=`<circle cx="${r(20+k)*100}" cy="${55+r(30+k)*40}" r
 return o}
 const sceneURL=(sd,w,h)=>{const k=640/Math.max(w,h);return 'data:image/svg+xml;utf8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${Math.round(w*k)}" height="${Math.round(h*k)}" viewBox="0 0 100 100" preserveAspectRatio="xMidYMax slice">${sceneInner(sd)}</svg>`)};
 function fillSamples(){const e=empties(),sd=Math.floor(Math.random()*9000)+1;busy=1;return Promise.all(e.map(i=>{const sl=cv.getObjects().find(o=>o.data&&o.data.slot===i);return new Promise(r=>place(i,sceneURL(sd+i*7,sl.width,sl.height),r,1))})).then(()=>{busy=0;cv.requestRenderAll()})}
-const thumb=t=>`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(t.name)}"><rect width="${W}" height="${H}" fill="${t.bg}"/>${t.frame?`<rect x="24" y="24" width="${W-48}" height="${H-48}" fill="none" stroke="${t.ac}" stroke-width="4"/>`:''}${t.slots.map(([x,y,w,h,a,p,fp],i)=>`<g transform="rotate(${a||0} ${x+w/2} ${y+h/2})"><svg x="${x}" y="${y}" width="${w}" height="${h}" viewBox="0 0 100 100" preserveAspectRatio="xMidYMax slice"${fp=='bw'?' style="filter:grayscale(1)"':''}>${sceneInner(+t.id.slice(1)*13+i)}</svg>${p?`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="none" stroke="#fff" stroke-width="12"/>`:''}</g>`).join('')}${t.fade?`<rect x="0" y="350" width="${W}" height="350" fill="${t.bg}" opacity=".45"/>`:''}${t.texts.filter(x=>x[2]!=='sans-serif').map(([s,z,f,x,y,w])=>`<rect x="${x-Math.min(s.length*z*.28,w/2)}" y="${y-z*.3}" width="${Math.min(s.length*z*.56,w)}" height="${z*.5}" rx="6" fill="${t.fg}" opacity=".6"/>`).join('')}${t.cal?`<rect x="${t.cal[0]-110}" y="${t.cal[1]-100}" width="220" height="200" rx="8" fill="${t.fg}" opacity=".2"/>`:''}</svg>`;
+const thumb=t=>`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(t.name)}"><rect width="${W}" height="${H}" fill="${t.bg}"/>${t.frame?`<rect x="24" y="24" width="${W-48}" height="${H-48}" fill="none" stroke="${t.ac}" stroke-width="4"/>`:''}${t.slots.map(([x,y,w,h,a,p,fp],i)=>`<g transform="rotate(${a||0} ${x+w/2} ${y+h/2})"><svg x="${x}" y="${y}" width="${w}" height="${h}" viewBox="0 0 100 100" preserveAspectRatio="xMidYMax slice"${fp=='bw'?' style="filter:grayscale(1)"':''}>${sceneInner(+t.id.slice(1)*13+i)}</svg>${p?`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="none" stroke="#fff" stroke-width="12"/>`:''}</g>`).join('')}${t.fade?`<rect x="0" y="350" width="${W}" height="350" fill="${t.bg}" opacity=".45"/>`:''}${t.texts.filter(x=>x[2]!=='sans-serif').map(([s,z,f,x,y,w])=>`<rect x="${x-Math.min(s.length*z*.28,w/2)}" y="${y-z*.3}" width="${Math.min(s.length*z*.56,w)}" height="${z*.5}" rx="6" fill="${t.fg}" opacity=".6"/>`).join('')}${t.cal?`<rect x="${t.cal[0]-110}" y="${t.cal[1]-100}" width="220" height="200" rx="8" fill="${t.fg}" opacity=".2"/>`:''}${(t.decor||[]).map(([k,x,y,z,a,c])=>`<circle cx="${x}" cy="${y}" r="${Math.min(z*.3,40)}" fill="${c||t.ac}" opacity=".75"/>`).join('')}</svg>`;
 /* ===== GALLERY UI ===== */
 let favs=G('a4fav',[]),LIM=60;
 const opt=(a,all)=>`<option value="">${all}</option>`+a.map(x=>`<option value="${esc(x[0])}">${esc(x[1])}</option>`).join('');
 $('#fc').innerHTML=opt(CATS.map(c=>[c[0],c[0]]),'All categories');
 $('#fn').innerHTML=opt([...new Set(TPL.map(t=>t.photos))].sort((a,b)=>a-b).map(n=>[n,n+(n>1?' Photos':' Photo')]),'Any photo count');
 $('#fs').innerHTML=opt(STY.map(s=>[s.n,s.n]),'All styles');
-const card=t=>`<article class="card">${thumb(t)}<span class="badge ${t.premium?'pro':''}">${t.premium?'PRO':'Free'}</span><button class="fav" data-a="fav" data-id="${t.id}" aria-label="Favorite">${favs.includes(t.id)?'♥':'♡'}</button><b>${esc(t.name)}</b><small>${t.photos} Photo${t.photos>1?'s':''} · ${esc(t.style)}</small><button class="pri" data-a="st" data-id="${t.id}">Start Designing</button></article>`;
-function gal(){const q=$('#q').value.toLowerCase().trim(),c=$('#fc').value,n=$('#fn').value,a=$('#fa').value,st=$('#fs').value,so=$('#so').value,fo=$('#ff').checked,rec=G('a4rec',[]);
-let l=TPL.filter(t=>(!c||t.category===c)&&(!n||t.photos==n)&&(!a||(a=='pro')==t.premium)&&(!st||t.style===st)&&(!fo||favs.includes(t.id))&&(!q||`${t.name} ${t.category} ${t.style} ${t.photos} photos ${t.photos} photo ${t.premium?'premium pro':'free'}`.toLowerCase().includes(q)));
+const card=t=>`<article class="card"><div data-a="pv" data-id="${t.id}" role="button" aria-label="Preview ${esc(t.name)}" style="cursor:pointer">${thumb(t)}</div><button class="fav" data-a="fav" data-id="${t.id}" aria-label="Favorite">${favs.includes(t.id)?'♥':'♡'}</button><b>${esc(t.name)}</b><small>${t.photos} Photo${t.photos>1?'s':''} · ${esc(t.style)}</small><button class="pri" data-a="st" data-id="${t.id}">${tr('start')}</button></article>`;
+function gal(){const q=$('#q').value.toLowerCase().trim(),c=$('#fc').value,n=$('#fn').value,st=$('#fs').value,so=$('#so').value,fo=$('#ff').checked,rec=G('a4rec',[]);
+let l=TPL.filter(t=>(!c||t.category===c)&&(!n||t.photos==n)&&(!st||t.style===st)&&(!fo||favs.includes(t.id))&&(!q||`${t.name} ${t.category} ${t.style} ${t.photos} photos ${t.photos} photo ${t.premium?'premium pro':'free'}`.toLowerCase().includes(q)));
 if(so=='az')l.sort((x,y)=>x.name.localeCompare(y.name));else if(so=='new')l.sort((x,y)=>y.order-x.order);else l.sort((x,y)=>(rec.indexOf(x.id)+1||99)-(rec.indexOf(y.id)+1||99)||x.order-y.order);
-$('#grid').innerHTML=(l.slice(0,LIM).map(card).join('')+(l.length>LIM?'<button data-a="more" style="grid-column:1/-1">Show more templates</button>':''))||'<p class="hint">No templates match. Try fewer filters.</p>';$('#cnt').textContent=l.length+' templates'}
-['#q','#fc','#fn','#fa','#fs','#so','#ff'].forEach(s=>$(s).addEventListener('input',()=>{LIM=60;gal()}));
-function view(v){['home','designs','editor'].forEach(x=>$('#'+x).hidden=x!==v);$('#hd').hidden=v==='editor';scrollTo(0,0);if(v==='editor')requestAnimationFrame(fit);if(v==='designs')listD();if(v==='home')gal()}
+$('#grid').innerHTML=(l.slice(0,LIM).map((t,i)=>card(t)+((i+1)%12==0?adBox('grid'):'')).join('')+(l.length>LIM?'<button data-a="more" style="grid-column:1/-1">'+tr('moret')+'</button>':''))||'<p class="hint">No templates match. Try fewer filters.</p>';$('#cnt').textContent=l.length+' templates';mountAds($('#grid'))}
+function renderRows(){const st=G('a4st',{}),sc=t=>((st.start||{})[t.id]||0)*3+((st.view||{})[t.id]||0),rk=t=>(+t.id.slice(1)*7919)%97;const R=[['trend',[...TPL].sort((a,b)=>sc(b)-sc(a)||rk(a)-rk(b)).slice(0,8),'pop'],['new',TPL.filter(t=>t.isNew).sort((a,b)=>a.order-b.order).slice(0,8),'new'],['pop',[...TPL].sort((a,b)=>sc(b)-sc(a)||a.order-b.order).slice(10,18),'pop']];
+$('#rows').innerHTML=R.map(([k,l,so])=>`<section class="sec" style="padding-bottom:0"><div class="row" style="justify-content:space-between;align-items:center"><h2 style="margin:8px 0">${tr(k)}</h2><button data-a="va" data-so="${so}">${tr('all')}</button></div><div class="rowx">${l.map(card).join('')}</div></section>`).join('')}
+['#q','#fc','#fn','#fs','#so','#ff'].forEach(s=>$(s).addEventListener('input',()=>{LIM=60;gal()}));
+function view(v){['home','designs','editor','adminv'].forEach(x=>$('#'+x).hidden=x!==v);if(v=='adminv')adminUI();$('#hd').hidden=v==='editor';scrollTo(0,0);if(v==='editor')requestAnimationFrame(fit);if(v==='designs')listD();if(v==='home')gal()}
 async function listD(){const l=(await dbAll()).sort((a,b)=>b.t-a.t);$('#dlist').innerHTML=l.map(p=>`<div class="card">${p.thumb?`<img src="${p.thumb}" alt="">`:''}<b>${esc(p.name)}</b><small>${new Date(p.t).toLocaleString()}</small><div class="row"><button class="pri" data-a="open" data-id="${p.id}">Continue</button><button data-a="dupp" data-id="${p.id}">Duplicate</button><button data-a="delp" data-id="${p.id}">Delete</button></div></div>`).join('')||'<p class="hint">No saved designs yet. Pick a template to start – designs save automatically on this device.</p>'}
 /* ===== EDITOR ===== */
 const KEYS=['data','lockMovementX','lockMovementY','lockScalingX','lockScalingY','lockRotation','hasControls','selectable','evented'];
@@ -182,15 +316,22 @@ cv.on('selection:created',()=>{tab='edit';panel()});cv.on('selection:updated',()
 cv.on('object:moving',e=>{const o=e.target,c=o.getCenterPoint();let x=c.x,y=c.y;const gx=Math.abs(x-W/2)<8,gy=Math.abs(y-H/2)<8;if(gx)x=W/2;if(gy)y=H/2;if(gx||gy)o.setPositionByOrigin(new fabric.Point(x,y),'center','center');$('#vl').style.display=gx?'block':'none';$('#hl').style.display=gy?'block':'none'});
 cv.on('mouse:up',()=>{$('#vl').style.display=$('#hl').style.display='none'});
 cv.on('mouse:dblclick',e=>{if(isSlot(e.target)&&!hasPh(e.target.data.slot)){pend=e.target.data.slot;$('#file').click()}});
-new ResizeObserver(fit).observe($('#stage'))}
+new ResizeObserver(fit).observe($('#stage'));
+let g0=null;const up=cv.upperCanvasEl,dist=t=>Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY),ang=t=>Math.atan2(t[1].clientY-t[0].clientY,t[1].clientX-t[0].clientX);
+up.addEventListener('touchstart',e=>{const o=cv.getActiveObject();if(e.touches.length==2&&o)g0={d:dist(e.touches),r:ang(e.touches),sx:o.scaleX,sy:o.scaleY,an:o.angle,o}},{passive:true});
+up.addEventListener('touchmove',e=>{if(g0&&e.touches.length==2){const k=dist(e.touches)/g0.d,o=g0.o;o.set({scaleX:g0.sx*k,scaleY:g0.sy*k,angle:g0.an+(ang(e.touches)-g0.r)*180/Math.PI});if(o.data&&o.data.base)o.data.z=o.scaleX/o.data.base;o.setCoords();cv.requestRenderAll();e.preventDefault()}},{passive:false});
+up.addEventListener('touchend',()=>{if(g0){cv.fire('object:modified',{target:g0.o});g0=null}});
+cv.on('object:modified',e=>{const o=e.target;if(!o||!o.data||o.data.ph===undefined)return;const c=o.getCenterPoint(),s=cv.getObjects().find(x=>isSlot(x)&&x.data.slot!==o.data.ph&&x.containsPoint(c));if(!s)return;
+const i1=o.data.ph,i2=s.data.slot,o2=cv.getObjects().find(x=>x.data&&x.data.ph===i2),a=[o.getSrc(),o.data.sample],b=o2?[o2.getSrc(),o2.data.sample]:null;cv.remove(o);if(o2)cv.remove(o2);place(i2,a[0],()=>{b?place(i1,b[0],()=>later(),b[1]):later()},a[1])});
+}
 function fit(){if(!cv)return;const s=$('#stage'),z=Math.min((s.clientWidth-16)/W,(s.clientHeight-16)/H);if(z>0){cv.setZoom(z);cv.setDimensions({width:W*z,height:H*z})}}
 const loadFonts=()=>{const fs=new Set(['Hind Siliguri']);cv.getObjects('textbox').forEach(o=>fs.add(o.fontFamily.split(',')[0].replace(/['"]/g,'')));return Promise.all([...fs].map(f=>document.fonts.load(`16px "${f}"`,'Aআ'))).then(()=>{fabric.util.clearFabricFontCache();cv.getObjects('textbox').forEach(o=>o.initDimensions());cv.requestRenderAll()})};
 function loadTpl(t){loading=1;cv.clear();cv.backgroundColor=t?t.bg:'#ffffff';
 if(t){if(t.frame)cv.add(new fabric.Rect({left:24,top:24,width:W-48,height:H-48,fill:'',stroke:t.ac,strokeWidth:2,data:{}}));
 t.slots.forEach(([x,y,w,h,a,p,fp],i)=>{cv.add(new fabric.Rect({left:x+w/2,top:y+h/2,width:w,height:h,angle:a||0,originX:'center',originY:'center',fill:t.ac+'44',stroke:p?'#fff':t.ac,strokeWidth:p?16:2,strokeDashArray:p?null:[8,6],shadow:p?new fabric.Shadow({color:'#0005',blur:14,offsetY:4}):null,lockMovementX:1,lockMovementY:1,lockScalingX:1,lockScalingY:1,lockRotation:1,hasControls:false,data:{slot:i,fp}}));if(i===0&&t.fade)cv.add(fadeRect(t,x,y,w,h))});
-t.texts.forEach(([s,z,f,x,y,w,al,ang,col])=>cv.add(new fabric.Textbox(s,{left:x,top:y,width:w,originX:'center',originY:'center',textAlign:al||'center',angle:ang||0,fontSize:z,fontFamily:f,fill:col||t.fg,data:{}})));if(t.cal)cv.add(calObj(new Date(),t.cal[0],t.cal[1],t.cal[2]*11,t.fg,t.ac))}
+t.texts.forEach(([s,z,f,x,y,w,al,ang,col])=>cv.add(new fabric.Textbox(s,{left:x,top:y,width:w,originX:'center',originY:'center',textAlign:al||'center',angle:ang||0,fontSize:z,fontFamily:f,fill:col||t.fg,data:{}})));if(t.cal)cv.add(calObj(new Date(),t.cal[0],t.cal[1],t.cal[2]*11,t.fg,t.ac));(t.decor||[]).forEach(([k,x,y,z,a,col])=>{const o=mkDec(k,col||t.ac,z);o.set({left:x,top:y,angle:a||0});cv.add(o)})}
 loading=0;cv.renderAll();loadFonts()}
-function start(t){initCv();cur={id:'p'+Date.now(),name:'Untitled Design',fg:t?t.fg:'#222222',cat:t&&t.category};view('editor');loadTpl(t);$('#dname').value=cur.name;hist=[];hi=-1;tab='photos';fillSamples().then(()=>{snap();save();panel()});
+function start(t){bump('start',t?t.id:'blank');initCv();cur={id:'p'+Date.now(),name:'Untitled Design',fg:t?t.fg:'#222222',cat:t&&t.category};view('editor');loadTpl(t);$('#dname').value=cur.name;hist=[];hi=-1;tab='photos';fillSamples().then(()=>{snap();save();panel()});
 if(t){const r=G('a4rec',[]).filter(x=>x!==t.id);r.unshift(t.id);S('a4rec',r.slice(0,12))}}
 function snap(){const s=JSON.stringify(cv.toJSON(KEYS));if(hist[hi]===s)return;hist=hist.slice(0,hi+1);hist.push(s);if(hist.length>40)hist.shift();hi=hist.length-1}
 function later(){clearTimeout(tm);$('#saved').textContent='Saving…';tm=setTimeout(()=>{snap();save()},600)}
@@ -200,7 +341,8 @@ $('#dname').addEventListener('input',e=>{cur.name=e.target.value||'Untitled Desi
 /* photos */
 const shrink=f=>new Promise((ok,no)=>{if(!/^image\/(jpe?g|png|webp)$/.test(f.type))return no('type');if(f.size>40e6)return no('big');const u=URL.createObjectURL(f),i=new Image();i.onload=()=>{const k=Math.min(1,2200/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*k;c.height=i.height*k;c.getContext('2d').drawImage(i,0,0,c.width,c.height);URL.revokeObjectURL(u);ok(c.toDataURL('image/jpeg',.9))};i.onerror=()=>no('bad');i.src=u});
 function place(i,url,cb,smp){const s=cv.getObjects().find(o=>o.data&&o.data.slot===i);fabric.Image.fromURL(url,img=>{cv.getObjects().filter(o=>o.data&&o.data.ph===i).forEach(o=>cv.remove(o));const k=Math.max(s.width/img.width,s.height/img.height),ov=img.height*k-s.height;/* smart-crop heuristic: bias toward upper part where faces usually are */
-img.set({originX:'center',originY:'center',left:s.left,top:s.top+ov*.15,scaleX:k,scaleY:k,angle:s.angle,clipPath:new fabric.Rect({left:s.left,top:s.top,width:s.width,height:s.height,originX:'center',originY:'center',angle:s.angle,absolutePositioned:true}),data:{ph:i,base:k,z:1,fp:(s.data&&s.data.fp)||'none',b:0,c:0,sample:smp?1:0}});if(img.data.fp!=='none')filt(img);cv.add(img);cv.moveTo(img,cv.getObjects().indexOf(s)+1);cb&&cb()})}
+img.set({originX:'center',originY:'center',left:s.left,top:s.top+ov*.15,scaleX:k,scaleY:k,angle:s.angle,clipPath:new fabric.Rect({left:s.left,top:s.top,width:s.width,height:s.height,originX:'center',originY:'center',angle:s.angle,absolutePositioned:true}),data:{ph:i,base:k,z:1,fp:(s.data&&s.data.fp)||'none',b:0,c:0,sample:smp?1:0}});if(img.data.fp!=='none')filt(img);cv.add(img);cv.moveTo(img,cv.getObjects().indexOf(s)+1);if(!smp)faceFit(img,s);cb&&cb()})}
+async function faceFit(img,s){try{if(!window.FaceDetector)return;const f=await new FaceDetector({fastMode:true}).detect(img.getElement());if(!f.length)return;const b=f.map(x=>x.boundingBox),cx=b.reduce((a,x)=>a+x.x+x.width/2,0)/b.length,cy=b.reduce((a,x)=>a+x.y+x.height/2,0)/b.length,k=img.scaleX,mx=(img.width*k-s.width)/2,my=(img.height*k-s.height)/2,cl=(v,m)=>Math.max(-m,Math.min(m,v));img.set({left:s.left-cl((cx-img.width/2)*k,mx),top:s.top-cl((cy-img.height/2)*k,my)});img.setCoords();cv.requestRenderAll()}catch(e){}}
 function freeImg(u){fabric.Image.fromURL(u,img=>{const k=Math.min(520/img.width,520/img.height);img.set({left:W/2,top:H/2,originX:'center',originY:'center',scaleX:k,scaleY:k,data:{base:k,z:1,fp:'none',b:0,c:0}});add(img)})}
 function bgs(){cv.getObjects().filter(o=>o.data&&o.data.bg).forEach(o=>cv.remove(o))}
 function setBg(c1,c2){bgs();cv.backgroundColor=c1;if(c2){const r=new fabric.Rect({left:0,top:0,width:W,height:H,selectable:false,evented:false,data:{bg:1},fill:new fabric.Gradient({type:'linear',coords:{x1:0,y1:0,x2:0,y2:H},colorStops:[{offset:0,color:c1},{offset:1,color:c2}]})});cv.add(r);cv.sendToBack(r)}cv.requestRenderAll();later()}
@@ -226,27 +368,27 @@ const rng=(l,p,a,b,v,s=1)=>`<label>${l}<input type="range" data-p="${p}" min="${
 const hex=v=>typeof v=='string'&&/^#[0-9a-f]{6}$/i.test(v)?v:'#000000';
 const col=(l,p,v)=>`<label>${l}<input type="color" data-p="${p}" value="${hex(v)}"></label>`;
 const bt=(a,l,x='')=>`<button data-a="${a}" ${x}>${l}</button>`;
-function panel(){if(!cv)return;$('#tabs').innerHTML=TABS.map(t=>`<button data-a="tab" data-v="${t[0]}" class="${tab==t[0]?'on':''}">${t[1]}</button>`).join('');const o=cv.getActiveObject();let h='';
+function panel(){if(!cv)return;$('#tabs').innerHTML=TABS.map(t=>`<button data-a="tab" data-v="${t[0]}" class="${tab==t[0]?'on':''}">${tr(t[0])}</button>`).join('');const o=cv.getActiveObject();let h='';
 if(tab=='photos'){const used=cv.getObjects('image').filter(x=>x.data&&x.data.ph!==undefined&&!x.data.sample).length,tot=cv.getObjects().filter(isSlot).length;h=`<button class="pri" data-a="up">＋ Upload photos</button><p class="hint">Select several at once – they fill empty slots in order. Photos stay on your device. Double-tap an empty slot to fill just that one.${tot?` Filled: ${used}/${tot}.`:''}</p><div class="row">${bt('smp','🎲 Random sample photos')}${bt('rmsmp','Remove samples')}</div><b>Auto arrange into a grid</b><div class="row">${[4,6,9,12].map(n=>bt('arr',n+' photos',`data-n="${n}"`)).join('')}</div>`}
 else if(tab=='text')h=[['h','+ Heading'],['s','+ Subtitle'],['b','+ Body text'],['d','+ Date'],['n','+ Name']].map(x=>bt('txt',x[1],`data-k="${x[0]}"`)).join('')+'<p class="hint">Tap text on the page, then use the Edit tab. Double-tap text to type directly.</p>';
 else if(tab=='els')h=`<b>Shapes</b><div class="row">${Object.keys(SH).map(k=>bt('shp',k,`data-k="${k}"`)).join('')}</div><b>Stickers</b><div class="row">${STK.map(k=>bt('stk',k,`data-k="${k}"`)).join('')}</div><b>Calendar</b><input type="date" id="cd" aria-label="Calendar date">${bt('cal','Add calendar')}<b>QR code</b><input id="qrv" placeholder="https://… (website, Instagram, WhatsApp)">${bt('qr','Add QR code')}`;
 else if(tab=='bg')h=`<div class="row">${['#ffffff','#000000','#fff5f5','#eaf3ff','#fdf6e3','#e8f5e9','#f3e8ff','#fff1c9'].map(c=>`<button class="sw" data-a="bgc" data-c="${c}" style="background:${c}" aria-label="Background ${c}"></button>`).join('')}</div><label>Color 1<input type="color" id="c1" value="#ffffff"></label><label>Color 2 (for gradient)<input type="color" id="c2" value="#dbe7ff"></label><div class="row">${bt('solid','Solid')}${bt('grad','Gradient')}${bt('upbg','Upload background')}</div>`;
 else if(tab=='edit')h=editP(o);
-else h=`<label class="ck"><input type="checkbox" id="gd" data-a="gd" checked> Show print-safe margin guide</label>${bt('dupd','Duplicate whole design')}${bt('clr','Clear design')}${bt('fs','Fullscreen')}${bt('nav','My Designs','data-v="designs"')}<p class="hint">Center guides appear (red lines) when you drag objects to the middle. Free exports carry a small watermark (configurable in CFG).</p>`;
-$('#pan').innerHTML=h}
+else h=`<label class="ck"><input type="checkbox" id="gd" data-a="gd" checked> Show print-safe margin guide</label>${bt('dupd','Duplicate whole design')}${bt('clr','Clear design')}${bt('fs','Fullscreen')}${bt('beauty','✨ Make it beautiful')}${bt('vars','Layout variations')}${bt('nav','My Designs','data-v="designs"')}<p class="hint">Center guides appear (red lines) when you drag objects to the middle. Free exports carry a small watermark (configurable in CFG).</p>`;
+if(tab=='more')h+=adBox('editor');$('#pan').innerHTML=h;mountAds($('#pan'))}
 function editP(o){if(!o)return'<p class="hint">Tap anything on the page to edit it.</p>';const d=o.data||{},t=o.type;
 if(isSlot(o)&&!hasPh(d.slot))return`<button class="pri" data-a="up1" data-i="${d.slot}">＋ Add photo here</button><p class="hint">Or use Photos → Upload to fill all empty slots.</p>`;
 let h='';
 if(t=='textbox')h+=`<textarea data-p="text" rows="2">${esc(o.text)}</textarea><label>Font<select data-p="fontFamily">${FONTS.map(f=>`<option value="${esc(f[1])}" ${o.fontFamily==f[1]?'selected':''}>${f[0]}</option>`).join('')}</select></label>`+rng('Size','fontSize',10,200,o.fontSize)+col('Color','fill',o.fill)+`<div class="row">${bt('b','<b>B</b>')}${bt('i','<i>I</i>')}${bt('u','<u>U</u>')}${['left','center','right'].map(a=>bt('al',a[0].toUpperCase(),`data-v="${a}"`)).join('')}${bt('sh','Shadow')}</div>`+rng('Letter spacing (keep 0 for Bengali)','charSpacing',0,500,o.charSpacing)+rng('Line height','lineHeight',.8,2.5,o.lineHeight,.05);
 else if(t=='text')h+=rng('Size','fontSize',20,300,o.fontSize);
-else if(t=='image')h+=rng('Zoom','zoom',.3,4,d.z||1,.01)+rng('Rotate','angle',-180,180,o.angle)+`<label>Filter<select data-p="fp">${[['none','Normal'],['bw','Black & White'],['vintage','Vintage'],['warm','Warm'],['cool','Cool'],['contrast','High Contrast'],['fade','Fade']].map(f=>`<option value="${f[0]}" ${d.fp==f[0]?'selected':''}>${f[1]}</option>`).join('')}</select></label>`+rng('Brightness','b',-.5,.5,d.b||0,.01)+rng('Contrast','c',-.5,.5,d.c||0,.01)+`<div class="row">${d.ph!==undefined?bt('up1','Replace photo',`data-i="${d.ph}"`):''}${bt('fx','Flip H')}${bt('fy','Flip V')}${bt('fill','Fill')}${bt('fitp','Fit')}${bt('rst','Reset')}</div>`;
+else if(t=='image')h+=rng('Zoom','zoom',.3,4,d.z||1,.01)+rng('Rotate','angle',-180,180,o.angle)+`<label>Filter<select data-p="fp">${[['none','Normal'],['bw','Black & White'],['vintage','Vintage'],['warm','Warm'],['cool','Cool'],['contrast','High Contrast'],['fade','Fade']].map(f=>`<option value="${f[0]}" ${d.fp==f[0]?'selected':''}>${f[1]}</option>`).join('')}</select></label>`+rng('Brightness','b',-.5,.5,d.b||0,.01)+rng('Contrast','c',-.5,.5,d.c||0,.01)+`<div class="row">${d.ph!==undefined?bt('up1','Replace photo',`data-i="${d.ph}"`):''}${bt('fx','Flip H')}${bt('fy','Flip V')}${bt('fill','Fill')}${bt('fitp','Fit')}${bt('rst','Reset')}${bt('rmbg','Remove plain bg')}</div>`;
 else if(t!='group')h+=col('Fill','fill',o.fill)+col('Outline','stroke',o.stroke);
 h+=rng('Opacity','opacity',.1,1,o.opacity,.05)+`<div class="row">${bt('dup','Duplicate')}${bt('del','Delete')}${bt('lyr','Forward','data-v="f"')}${bt('lyr','Backward','data-v="b"')}${bt('lyr','To front','data-v="F"')}${bt('lyr','To back','data-v="B"')}${bt('lock',o.lockMovementX?'Unlock':'Lock')}</div>`;return h}
 $('#pan').addEventListener('input',e=>{const el=e.target,p=el.dataset.p,o=cv.getActiveObject();if(!p||!o)return;const v=el.type=='range'?+el.value:el.value,d=o.data||(o.data={});
 if(p=='zoom'){d.z=v;o.scale(d.base*v)}else if(p=='fp'||p=='b'||p=='c'){d[p]=v;filt(o)}else{o.set(p,v);if(p=='fontFamily')document.fonts.load(`16px ${v.split(',')[0]}`,'Aআ').then(()=>{fabric.util.clearFabricFontCache();o.initDimensions();cv.requestRenderAll()})}
 o.setCoords();cv.requestRenderAll();later()});
 /* ===== EXPORT ===== */
-async function render(w,fmt,q,tr){cv.discardActiveObject();busy=1;const hid=cv.getObjects().filter(o=>isSlot(o)&&!hasPh(o.data.slot));hid.forEach(o=>o.visible=false);let wm;if(CFG.watermark){wm=new fabric.Text(CFG.wmText,{left:W-20,top:H-14,originX:'right',originY:'bottom',fontSize:12,fontFamily:'Poppins',fill:'#888888',opacity:.75});cv.add(wm)}
+async function render(w,fmt,q,tr){cv.discardActiveObject();busy=1;const hid=cv.getObjects().filter(o=>isSlot(o)&&!hasPh(o.data.slot));hid.forEach(o=>o.visible=false);let wm;if(CFG.site.watermark){wm=new fabric.Text(CFG.site.name,{left:W-20,top:H-14,originX:'right',originY:'bottom',fontSize:12,fontFamily:'Poppins',fill:'#888888',opacity:.75});cv.add(wm)}
 const bc=cv.backgroundColor;if(tr)cv.backgroundColor=null;cv.setZoom(1);cv.setDimensions({width:W,height:H});
 try{return cv.toDataURL({format:fmt,quality:q,multiplier:w/W,enableRetinaScaling:false})}finally{wm&&cv.remove(wm);hid.forEach(o=>o.visible=true);cv.backgroundColor=bc;fit();cv.requestRenderAll();busy=0}}
 const fname=()=>cur.name.replace(/[^\w\u0980-\u09FF-]+/g,'_');
@@ -256,7 +398,14 @@ const A={
 nav(b){view(b.dataset.v)},theme(){const d=document.documentElement,n=(d.dataset.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'))=='dark'?'light':'dark';d.dataset.theme=n;S('a4th',n)},
 explore(){$('#explore').scrollIntoView({behavior:'smooth'})},blank(){start(null)},
 fav(b){const i=b.dataset.id;favs=favs.includes(i)?favs.filter(x=>x!==i):[...favs,i];S('a4fav',favs);toast(favs.includes(i)?'Favorite added':'Favorite removed');gal()},
-st(b){start(TPL.find(t=>t.id===b.dataset.id));toast('Template selected')},
+st(b){const d=$('#dlgT');if(d.open)d.close();start(TPL.find(t=>t.id===b.dataset.id));toast('Template selected')},
+pv(b){const t=TPL.find(x=>x.id===b.dataset.id);bump('view',t.id);$('#tpv').innerHTML=thumb(t)+`<h3 style="margin:8px 0 0">${esc(t.name)}</h3><p class="hint">${esc(t.category)} · ${t.photos} photo${t.photos>1?'s':''} · ${esc(t.style)} · A4 portrait · Free<br>A ${esc(t.style.toLowerCase())} ${esc(t.category.toLowerCase())} layout. Every photo, text and decoration can be moved, resized or replaced.</p>`;$('#tgo').dataset.id=t.id;$('#tgo').textContent=tr('start');$('#dlgT').showModal()},closeT(){$('#dlgT').close()},closeV(){$('#dlgV').close()},
+lang(){LANG=LANG=='en'?'bn':'en';S('a4lang',LANG);applyLang();gal();renderRows();if(cv)panel()},va(b){$('#so').value=b.dataset.so;LIM=60;gal();A.explore()},
+adsave(){S('a4cfg',readForm());toast('Saved here. Reloading…');setTimeout(()=>location.reload(),700)},addl(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(fullCfg(),null,2)],{type:'application/json'}));a.download='ads-config.json';a.click()},adcopy(){navigator.clipboard.writeText(JSON.stringify(fullCfg(),null,2)).then(()=>toast('Config copied'),()=>toast('Copy failed – use Download'))},adreset(){try{localStorage.removeItem('a4cfg')}catch(e){}location.reload()},adstxt(){const c=V('as_c').replace(/^ca-/,'');if(!c)return toast('Enter your Publisher ID first.');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['google.com, '+c+', DIRECT, f08c47fec0942fa0\n'],{type:'text/plain'}));a.download='ads.txt';a.click()},
+beauty(){const t=cands()[0];if(!t)return toast('No suggestion found.');if(!confirm('Create a new suggested design with your photos? Your current design stays saved.'))return;newFrom(t,realSrcs(),cur.name+' (suggested)')},vars(){const seen=new Set(),c=cands().filter(t=>{const k=t.name.split(' ').slice(1).join(' ');if(seen.has(k))return false;seen.add(k);return true}).slice(0,3);$('#vbox').innerHTML=c.map(t=>`<div class="card" style="min-width:140px">${thumb(t)}<small>${esc(t.name)}</small><button class="pri" data-a="pickv" data-id="${t.id}">Use</button></div>`).join('')||'<p class="hint">No matching layouts.</p>';$('#dlgV').showModal()},pickv(b){$('#dlgV').close();newFrom(TPL.find(t=>t.id===b.dataset.id),realSrcs(),cur.name+' (variation)')},
+async rmbg(){const o=cv.getActiveObject();if(!o||o.type!='image')return;toast('Removing background…');const el=o.getElement(),W0=el.naturalWidth||el.width,H0=el.naturalHeight||el.height,k=Math.min(1,1200/Math.max(W0,H0)),w=Math.round(W0*k),h=Math.round(H0*k),c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d');x.drawImage(el,0,0,w,h);const im=x.getImageData(0,0,w,h),d=im.data,r0=d[0],g0_=d[1],b0=d[2],seen=new Uint8Array(w*h),st=[0,w-1,(h-1)*w,h*w-1];
+while(st.length){const q=st.pop();if(seen[q])continue;seen[q]=1;const i=q*4;if(Math.abs(d[i]-r0)+Math.abs(d[i+1]-g0_)+Math.abs(d[i+2]-b0)>135)continue;d[i+3]=0;const X=q%w,Y=(q/w)|0;if(X>0)st.push(q-1);if(X<w-1)st.push(q+1);if(Y>0)st.push(q-w);if(Y<h-1)st.push(q+w)}
+x.putImageData(im,0,0);o.setSrc(c.toDataURL('image/png'),()=>{o.set({scaleX:o.scaleX/k,scaleY:o.scaleY/k});if(o.data){o.data.base/=k;o.data.sample=0}o.setCoords();cv.requestRenderAll();later();toast('Done – works best on plain backgrounds')})},
 async open(b){const p=(await dbAll()).find(x=>x.id===b.dataset.id);initCv();cur={id:p.id,name:p.name,fg:p.fg,cat:p.cat,thumb:p.thumb};view('editor');$('#dname').value=p.name;loading=1;cv.loadFromJSON(p.json,()=>{loading=0;cv.renderAll();hist=[];hi=-1;snap();loadFonts();tab='photos';panel()})},
 async dupp(b){const p=(await dbAll()).find(x=>x.id===b.dataset.id);await dbPut({...p,id:'p'+Date.now(),name:p.name+' copy',t:Date.now()});listD()},
 async delp(b){if(confirm('Delete Design? This can’t be undone.')){await dbDel(b.dataset.id);toast('Design deleted');listD()}},
@@ -283,9 +432,19 @@ del(){cv.getActiveObjects().forEach(o=>cv.remove(o));cv.discardActiveObject();cv
 lyr(b){const o=cv.getActiveObject(),v=b.dataset.v;v=='f'?cv.bringForward(o):v=='b'?cv.sendBackwards(o):v=='F'?cv.bringToFront(o):cv.sendToBack(o);later()},
 lock(){const o=cv.getActiveObject(),l=!o.lockMovementX;o.set({lockMovementX:l,lockMovementY:l,lockScalingX:l,lockScalingY:l,lockRotation:l});later();panel()},
 async exp(){try{$('#pv').src=await render(500,'jpeg',.8);$('#dlg').showModal()}catch(e){fail(e)}},close(){$('#dlg').close()},
-async dl(){try{const w=+$('#qs').value,f=$('#fmt').value,q=+$('#jq').value;if(f=='pdf'){const u=await render(w,'jpeg',q),d=new window.jspdf.jsPDF({unit:'mm',format:'a4'});d.addImage(u,'JPEG',0,0,210,297);d.save(fname()+'.pdf')}else{const u=await render(w,f=='png'?'png':'jpeg',q,f=='png'&&$('#tr').checked),a=document.createElement('a');a.href=u;a.download=fname()+(f=='png'?'.png':'.jpg');a.click()}toast('Export complete')}catch(e){fail(e)}},
+async dl(){gate(()=>A.dl0())},
+async dl0(){try{const w=+$('#qs').value,f=$('#fmt').value,q=+$('#jq').value,z=SZ[$('#sz').value],dlA=(u,ext)=>{const a=document.createElement('a');a.href=u;a.download=fname()+ext;a.click()};
+if(z)dlA(await fitTo(await render(1800,'jpeg',q),z,bg0()),'-'+$('#sz').value+'.jpg');
+else if(f=='pdf'){const u=await render(w,'jpeg',q),bl=$('#bl').checked,m=bl?3:0,P=210+2*m,Q=297+2*m,d=new window.jspdf.jsPDF({unit:'mm',format:[P,Q]});if(bl){d.setFillColor(bg0());d.rect(0,0,P,Q,'F')}d.addImage(u,'JPEG',m,m,210,297);if(bl){d.setDrawColor(0);d.setLineWidth(.15);[[m,0,m,2],[P-m,0,P-m,2],[m,Q-2,m,Q],[P-m,Q-2,P-m,Q],[0,m,2,m],[0,Q-m,2,Q-m],[P-2,m,P,m],[P-2,Q-m,P,Q-m]].forEach(l=>d.line(...l))}d.save(fname()+'.pdf')}
+else dlA(await render(w,f=='png'?'png':'jpeg',q,f=='png'&&$('#tr').checked),f=='png'?'.png':'.jpg');
+bump('exp');toast('Export complete')}catch(e){fail(e)}},
 async print(){try{const i=$('#pimg');i.src=await render(1240,'jpeg',.95);await i.decode();$('#dlg').close();window.print()}catch(e){fail(e)}},
 async share(){try{const u=await render(1240,'png'),f=new File([await (await fetch(u)).blob()],fname()+'.png',{type:'image/png'});if(navigator.canShare&&navigator.canShare({files:[f]}))await navigator.share({files:[f],title:cur.name});else toast('Sharing isn’t supported in this browser – use Download.')}catch(e){if(e.name!='AbortError')fail(e)}}};
+const SZ={fb:[1200,630],ig:[1080,1080],story:[1080,1920],wa:[1080,1920]},bg0=()=>typeof cv.backgroundColor=='string'&&/^#[0-9a-f]{6}$/i.test(cv.backgroundColor)?cv.backgroundColor:'#ffffff';
+const fitTo=(u,[w,h],bg)=>new Promise(ok=>{const i=new Image();i.onload=()=>{const c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d');x.fillStyle=bg;x.fillRect(0,0,w,h);const k=Math.min(w/i.width,h/i.height)*.94;x.drawImage(i,(w-i.width*k)/2,(h-i.height*k)/2,i.width*k,i.height*k);ok(c.toDataURL('image/jpeg',.92))};i.src=u});
+const realSrcs=()=>cv.getObjects('image').filter(o=>o.data&&o.data.ph!==undefined&&!o.data.sample).sort((a,b)=>a.data.ph-b.data.ph).map(o=>o.getSrc());
+function cands(){const n=Math.max(1,realSrcs().length||cv.getObjects().filter(isSlot).length),pool=TPL.filter(t=>t.photos===n),base=pool.length?pool:TPL.filter(t=>t.photos>=n).sort((a,b)=>a.photos-b.photos).slice(0,40),same=base.filter(t=>t.category===cur.cat);return[...(same.length>2?same:base)].sort(()=>Math.random()-.5)}
+async function newFrom(t,srcs,name){clearTimeout(tm);await save();cur={id:'p'+Date.now(),name,fg:t.fg,cat:t.category};loadTpl(t);$('#dname').value=name;busy=1;for(let i=0;i<Math.min(srcs.length,t.slots.length);i++)await new Promise(r=>place(i,srcs[i],r));await fillSamples();busy=0;hist=[];hi=-1;snap();save();tab='photos';panel()}
 const mod=o=>{o.setCoords();cv.requestRenderAll();cv.fire('object:modified',{target:o});panel()};
 document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b&&A[b.dataset.a]&&b.type!='checkbox')A[b.dataset.a](b)});
 document.addEventListener('change',e=>{if(e.target.dataset.a=='gd')A.gd(e.target)});
@@ -293,4 +452,5 @@ document.addEventListener('keydown',e=>{if(!cv||$('#editor').hidden||/INPUT|TEXT
 if((e.key=='Delete'||e.key=='Backspace')&&o){A.del();e.preventDefault()}else if((e.ctrlKey||e.metaKey)&&e.key=='z'){A.undo();e.preventDefault()}else if((e.ctrlKey||e.metaKey)&&e.key=='y'){A.redo();e.preventDefault()}});
 const th=G('a4th',null);if(th)document.documentElement.dataset.theme=th;
 gal();
+(async()=>{await loadCfg();applyCfg();applyLang();gal();renderRows();if(location.hash=='#admin')view('adminv');try{if('serviceWorker'in navigator)navigator.serviceWorker.register('service-worker.js').catch(()=>{})}catch(e){}})();
 </script></body></html>
