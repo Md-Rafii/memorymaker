@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>School Leaving Certificate</title>
+<style>
+:root{--bg:#eef1ed;--panel:#fff;--ink:#1d2b24;--muted:#5b6b62;--line:#cfd8d1;--green:#1f5c45;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141a17;--panel:#1e2723;--ink:#e6eee9;--muted:#9fb0a6;--line:#33423a}}
+:root[data-theme="dark"]{--bg:#141a17;--panel:#1e2723;--ink:#e6eee9;--muted:#9fb0a6;--line:#33423a}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:16px;display:grid;gap:16px}
+@media(min-width:900px){.wrap{grid-template-columns:320px 1fr;align-items:start}}
+.form{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+.form h1{font-size:18px;margin:0 0 6px}
+label{display:block;font-size:13px;color:var(--muted);margin:9px 0 3px}
+input,select{width:100%;padding:9px;border:1px solid var(--line);border-radius:6px;background:transparent;color:var(--ink);font:inherit;font-size:15px}
+select option{color:#000}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+button{margin-top:14px;width:100%;padding:11px;border:0;border-radius:6px;background:var(--green);color:#fff;font:inherit;font-size:15px;font-weight:600}
+.stage{overflow-x:auto}
+.scaler{width:max-content}
+.cert{width:1123px;height:794px;background:#fff;color:#111;padding:44px 64px;font-family:"Times New Roman",Times,serif;font-size:15px;line-height:1.95;transform-origin:top left;position:relative}
+.cert:before{content:"";position:absolute;inset:18px;border:2px solid #2b3f6b;pointer-events:none}
+.sn{font-family:Arial,sans-serif;font-weight:700;font-size:26px;text-align:center;line-height:1.3}
+.ad{text-align:center;font-size:15px;margin-top:2px;line-height:1.5}
+.tt{text-align:center;font-weight:700;font-size:26px;margin-top:14px;line-height:1.3}
+.st{text-align:center;font-size:14px;margin-bottom:14px}
+.meta{display:flex;justify-content:space-between;font-weight:700;font-size:15px}
+.v{display:inline;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;padding:0;font-weight:700;white-space:pre-wrap}.v.f{text-decoration:none}
+h3{font-size:16px;margin:16px 0 0;color:#2b3f6b}
+.r{line-height:1.8;font-size:15px}
+.foot{position:absolute;right:64px;bottom:44px;text-align:left;font-size:15px;line-height:1.6}
+.foot .l{border-top:1px solid #111;padding-top:4px;font-weight:700;min-width:240px}
+.hi{position:absolute;left:64px;bottom:44px;font-size:13px;line-height:1.6}
+@media print{
+@page{size:A4 landscape;margin:0}
+body{background:#fff}.form{display:none}.wrap{display:block;padding:0}.stage{overflow:visible}
+.cert{transform:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="form">
+<h1>School Leaving Certificate</h1>
+<label>School name</label><input id="school" value="Your School Name">
+<label>Address line</label><input id="addr" value="Area, Postal Code">
+<label>Certificate title</label><input id="title" value="SCHOOL LEAVING CERTIFICATE">
+<label>Subtitle (optional)</label><input id="sub" value="(S.L.C.)">
+<div class="row"><div><label>School upazila</label><input id="supa"></div><div><label>School district</label><input id="sdist"></div></div>
+<div class="row"><div><label>Serial no.</label><input id="serial"></div><div><label>Date of issue</label><input id="date"></div></div>
+<label>Student name</label><input id="name">
+<div class="row"><div><label>Father's name</label><input id="father"></div><div><label>Mother's name</label><input id="mother"></div></div>
+<div class="row"><div><label>Village</label><input id="vill"></div><div><label>Post office</label><input id="po"></div></div>
+<div class="row"><div><label>Upazila</label><input id="upa"></div><div><label>District</label><input id="dist"></div></div>
+<label>Date of birth</label><input id="dob">
+<div class="row"><div><label>Studying in class</label><input id="c1" value="8"></div><div><label>Appeared in exam of class</label><input id="c2" value="8"></div></div>
+<div class="row"><div><label>Promoted from class</label><input id="c3" value="8"></div><div><label>To class</label><input id="c4" value="9"></div></div>
+<div class="row"><div><label>Character</label><input id="char"></div><div><label>Academic year</label><input id="year"></div></div>
+<label>Reason for leaving</label>
+<select id="reason"><option value="0">None selected</option><option value="1">At the request of the guardian</option><option value="2">Change of residence</option><option value="3">Completion of the prescribed curriculum</option><option value="4">Change in the guardian's place of employment</option></select>
+<label>Head teacher's name</label><input id="hname">
+<div class="row"><div><label>Head teacher's phone</label><input id="hphone"></div><div><label>School email</label><input id="email"></div></div>
+<button onclick="window.print()">Print / Save as PDF</button>
+</div>
+<div class="stage"><div class="scaler" id="scaler"><div class="cert" id="cert">
+<div class="sn" id="o_school"></div>
+<div class="ad"><span id="o_addr"></span><br>Upazila: <span id="o_supa"></span> &nbsp; District: <span id="o_sdist"></span></div>
+<div class="tt" id="o_title"></div>
+<div class="st" id="o_sub"></div>
+<div class="meta"><div>Serial No.: <span id="o_serial"></span></div><div>Date: <span class="v" id="o_date"></span></div></div>
+<div>This is to certify that <span class="v" id="o_name"></span>, son/daughter of <span class="v" id="o_father"></span> and <span class="v" id="o_mother"></span> was a student of this school.</div>
+<div>Village: <span class="v" id="o_vill"></span> Post Office: <span class="v" id="o_po"></span><br>
+Upazila: <span class="v" id="o_upa"></span> District: <span class="v" id="o_dist"></span> Date of Birth: <span class="v" id="o_dob"></span></div>
+<div>The student has left this school. The student was studying in Class <span class="v" id="o_c1"></span> and appeared in the annual examination of Class <span class="v" id="o_c2"></span>. The student was promoted from Class <span class="v" id="o_c3"></span> to Class <span class="v" id="o_c4"></span>. All dues to the school have been paid up to the date of leaving.</div>
+<div>Character: <span class="v" id="o_char"></span><br>Academic Year: <span class="v" id="o_year"></span></div>
+<h3>REASON FOR LEAVING THE SCHOOL</h3>
+<div class="r" id="o_reason"></div>
+<div class="hi"><span id="o_email"></span><br><span id="o_hphone"></span></div>
+<div class="foot"><div class="l"><span id="o_hname"></span><br>Signature of the Head Teacher</div></div>
+</div></div></div>
+</div>
+<script>
+var ids=["title","sub","school","addr","supa","sdist","serial","date","name","father","mother","vill","po","upa","dist","dob","c1","c2","c3","c4","char","year","hname","hphone","email"];
+var R=["At the request of the guardian.","Change of residence.","Completion of the prescribed curriculum.","Change in the guardian\u2019s place of employment."];
+function upd(){
+ids.forEach(function(i){var t=document.getElementById(i).value,o=document.getElementById("o_"+i);if(!o)return;
+o.classList.toggle("f",!!t);var blank=!t;o.textContent=t||(["school","addr","title","sub"].indexOf(i)<0?"\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0":"");});
+var s=+document.getElementById("reason").value;
+document.getElementById("o_reason").innerHTML="Please mark the applicable reason:<div style=\"columns:2\">"+R.map(function(r,k){return (s==k+1?"\u2611 ":"\u2610 ")+(k+1)+". "+r}).join("<br>")+"</div>";}
+ids.concat(["reason"]).forEach(function(i){document.getElementById(i).addEventListener("input",upd)});
+function fit(){var w=document.querySelector(".stage").clientWidth,s=Math.min(1,w/1123),c=document.getElementById("cert"),sc=document.getElementById("scaler");c.style.transform="scale("+s+")";sc.style.width=1123*s+"px";sc.style.height=794*s+"px"}
+window.addEventListener("resize",fit);upd();fit();
+</script>
+</body>
+</html>
